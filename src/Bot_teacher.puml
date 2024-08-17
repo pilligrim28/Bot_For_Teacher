@@ -1,0 +1,30 @@
+@startuml
+skinparam{
+    Maxessagesize 150
+}
+skinparam sequence{
+    ParticipantPadding 30
+    MessageAlign center
+}
+Actor "Пользователь" as User  #green
+participant "Бот" as Bot
+database "База данных" as db order 8
+participant "Сервер" as Server order 10
+/' participant "Клиентское приложение для водителей" as Driver order 30 #5f5 '/
+
+/'queue "WebSocket" as br order 20'/
+autonumber
+skinparam{
+    Maxessagesize 200
+}
+skinparam sequence{
+    ParticipantPadding 30
+    MessageAlign center
+}
+title "Приложение бот для получения погоды"
+User -> Bot :Пользователь запускает бота нажимаая на кнопку "СТАРТ"
+Bot -> Server: Бот делает запрос на сервер о возможных функциях
+Server --> Bot: Присылает возможные команды в зашифрованном виде
+Bot ->Bot: Просит внести данные о городе.
+
+@enduml
